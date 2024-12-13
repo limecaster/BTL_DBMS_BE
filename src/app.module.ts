@@ -8,6 +8,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AutoBuildService } from 'service/auto-build.service';
 import { SpacyService } from 'service/spacy.service';
 import { CheckCompatibilityService } from 'service/check-compatibility.service';
+import { SearchController } from 'controller/search.controller';
+import { SearchProductService } from 'service/search-product.service';
 
 @Module({
   imports: [
@@ -15,7 +17,7 @@ import { CheckCompatibilityService } from 'service/check-compatibility.service';
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, BuildController],
+  controllers: [AppController, BuildController, SearchController],
   providers: [
     AppService,
     ManualBuildService,
@@ -24,6 +26,7 @@ import { CheckCompatibilityService } from 'service/check-compatibility.service';
     SpacyService,
     Neo4jConfigService,
     ConfigService,
+    SearchProductService
   ],
 })
-export class AppModule {}
+export class AppModule { }
