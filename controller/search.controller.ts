@@ -8,6 +8,6 @@ export class SearchController {
 
   @Get()
   async searchProduct(@Body('name') name: string) {
-    return this.searchProductService.searchProduct(name);
+    return (await this.searchProductService.searchProduct(name)).records.map((record) => record.get('node').properties);
   }
 }

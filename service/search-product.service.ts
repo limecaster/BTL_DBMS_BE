@@ -24,7 +24,9 @@ export class SearchProductService {
       RETURN node, score
       LIMIT 100;
     `;
-
+    if (!name) {
+        throw new Error('Name is required');
+    }
     return this.runQuery(query, { name });
   }
 }
