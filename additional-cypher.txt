@@ -22,3 +22,11 @@ MERGE (u)-[:FAVORITE]->(p)
 MATCH (u:User {id: '001'}), (p:Motherboard {id: "726dd601-66b1-4506-af33-3faeac3c962a"})
 MERGE (u)-[:FAVORITE]->(p)
             	
+-- 04:11:00 21/12/2024 Nhan
+CREATE FULLTEXT INDEX searchProductId FOR (n:CPU|CPUCooler|Case|GraphicsCard|InternalHardDrive|Keyboard|Monitor|Motherboard|Mouse|PowerSupply|RAM|Speaker|ThermalPaste|WiFiCard|WiredNetworkCard) ON EACH [n.id];
+
+-- 04:11:00 21/12/2024 Nhan
+CREATE (cart:Cart { cartId: '001', createdAt: datetime() })
+
+MATCH (user:User {id: '001'}), (cart:Cart {cartId: '001'}) MERGE (user)-[:OWNS]->(cart)
+
