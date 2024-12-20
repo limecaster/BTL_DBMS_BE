@@ -10,6 +10,8 @@ import { SpacyService } from 'service/spacy.service';
 import { CheckCompatibilityService } from 'service/check-compatibility.service';
 import { SearchController } from 'controller/search.controller';
 import { SearchProductService } from 'service/search-product.service';
+import { UserService } from 'service/user.service';
+import { UserController } from 'controller/user.controller';
 import { FavoriteListService } from 'service/favorite-list.service';
 import { FavoriteListController } from 'controller/favorite-list.controller';
 import { ManageCartController } from 'controller/manage-cart.controller';
@@ -29,7 +31,8 @@ import { ManageCartService } from 'service/manage-cart.service';
     SearchController,
     FavoriteListController,
     ManageCartController,
-    ViewDetailController
+    ViewDetailController,
+    UserController
   ],
   providers: [
     AppService,
@@ -42,7 +45,8 @@ import { ManageCartService } from 'service/manage-cart.service';
     SearchProductService,
     FavoriteListService,
     ManageCartService,
-    DetailProductService
+    DetailProductService,
+    UserService
   ],
 })
 export class AppModule {}
