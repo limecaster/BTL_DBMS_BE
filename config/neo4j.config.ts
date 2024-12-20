@@ -12,8 +12,25 @@ export class Neo4jConfigService {
       neo4j.auth.basic(
         this.configService.get<string>('NEO4J_USER'),
         this.configService.get<string>('NEO4J_PASSWORD'),
-      )
+      ),  
     );
+    this.testConnection();
+  }
+
+  async testConnection() {
+    const session = this.driver.session();
+    try {
+      const result = await session.run('RETURN 1');
+      console.log('Neo4j connected');
+    } catch (error) {
+      console.error('Error connecting to Neo4j:', error);
+    } finally {
+      await session.close();
+    }
+  }
+
+  getSession() {
+    return this.driver.session();
   }
 
   getDriver(): Driver {
