@@ -1,0 +1,5 @@
+
+-- 21:06:00 20/12/2024 Bang
+CREATE FULLTEXT INDEX searchProductName
+FOR (n:CPU|CPUCooler|Case|GraphicsCard|InternalHardDrive|Keyboard|Monitor|Motherboard|Mouse|PowerSupply|RAM|Speaker|ThermalPaste|WiFiCard|WiredNetworkCard)
+ON EACH [n.name];
