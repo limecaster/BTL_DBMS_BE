@@ -52,17 +52,26 @@ export class UserService {
     return result.records[0].toObject() as LoginUserDto;
   }
 
-  async loginUser(userDto: LoginUserDto): Promise<boolean> {
+  async loginUser(userDto: LoginUserDto): Promise<{ success: boolean, username?: string }> {
     const session = this.neo4jConfigService.getSession();
     const query = `
-      MATCH (u:User { username: $username, password: $password })
-      RETURN u.username as username
+        MATCH (u:User { username: $username, password: $password })
+        RETURN u.username as username
     `;
+    
     const result = await session.run(query, {
-      username: userDto.username,
-      password: userDto.password,
+        username: userDto.username,
+        password: userDto.password,
     });
+    
     session.close();
-    return result.records.length > 0;
-  }
+
+    if (result.records.length > 0) {
+        const username = result.records[0].get('username'); // Extract username from the result
+        return { success: true, username };
+    } else {
+        return { success: false };
+    }
+}
+
 }
