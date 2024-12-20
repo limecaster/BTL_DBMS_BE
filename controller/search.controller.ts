@@ -12,8 +12,17 @@ export class SearchController {
   @ApiOperation({ summary: 'Full-text search for products by name' })
   @ApiBody({ description: 'Name of the product to search for' })
   @ApiResponse({ status: 200, description: 'List of products found' })
-  // curl -X GET http://127.0.0.1:3001/search -H "Content-Type: application/json" -d '{"name": "AMD Ryzen 7"}'
-  async searchProduct(@Body('name') name: string) {
-    return (await this.searchProductService.searchProduct(name)).records.map((record) => record.get('node').properties);
+  // curl -X GET "http://localhost:3001/search?name=AMD?page=1?limit=20" -H "accept: application/json" -H "Content-Type: application/json" 
+  async searchProducts(
+    @Query('name') name: string,
+    @Query('page') page: string = '1',
+    @Query('limit') limit: string = '10',
+  ) {
+    const pageNum = parseInt(page, 10);
+    const limitNum = parseInt(limit, 10);
+    if (!name) {
+      throw new Error('Name query parameter is required');
+    }
+    return await this.searchProductService.searchProduct(name, pageNum, limitNum);
   }
 }

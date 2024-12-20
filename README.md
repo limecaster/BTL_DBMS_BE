@@ -53,7 +53,7 @@ $ npm run start:prod
 ```
 
 ## API Documentation
-# http://127.0.0.1/api
+# http://127.0.0.1:3001/api
 
 ## Deployment
 

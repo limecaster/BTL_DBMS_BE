@@ -12,6 +12,8 @@ import { SearchController } from 'controller/search.controller';
 import { SearchProductService } from 'service/search-product.service';
 import { UserService } from 'service/user.service';
 import { UserController } from 'controller/user.controller';
+import { FavoriteListService } from 'service/favorite-list.service';
+import { FavoriteListController } from 'controller/favorite-list.controller';
 
 @Module({
   imports: [
@@ -19,7 +21,13 @@ import { UserController } from 'controller/user.controller';
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, BuildController, SearchController, UserController],
+  controllers: [
+    AppController,
+    BuildController,
+    SearchController,
+    FavoriteListController,
+    UserController
+  ],
   providers: [
     AppService,
     ManualBuildService,
@@ -29,7 +37,8 @@ import { UserController } from 'controller/user.controller';
     Neo4jConfigService,
     ConfigService,
     SearchProductService,
+    FavoriteListService,
     UserService
   ],
 })
-export class AppModule { }
+export class AppModule {}
