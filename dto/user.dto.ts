@@ -22,6 +22,10 @@ export class RegisterUserDto {
 
   @ApiProperty({ description: 'The state where the user resides' })
   states: string;
+
+  // optional for phone
+  @ApiProperty({ description: 'The phone number of the user' })
+  phone: string;
 }
 
 export class LoginUserDto {
