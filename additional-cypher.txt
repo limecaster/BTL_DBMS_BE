@@ -3,3 +3,22 @@
 CREATE FULLTEXT INDEX searchProductName
 FOR (n:CPU|CPUCooler|Case|GraphicsCard|InternalHardDrive|Keyboard|Monitor|Motherboard|Mouse|PowerSupply|RAM|Speaker|ThermalPaste|WiFiCard|WiredNetworkCard)
 ON EACH [n.name];
+
+-- 01:19:00 21/12/2024 Bang
+CREATE (u:User {id: '001', name: 'Bang'})
+
+MATCH (u:User {id: '001'}), (p:CPU {id: "1003f28b-0a2d-49a1-99aa-6c38f559b3cc"})
+MERGE (u)-[:FAVORITE]->(p)
+
+MATCH (u:User {id: '001'}), (p:CPU {id: "4b4f4bda-2ea1-4ceb-a8ea-d631f03084b8"})
+MERGE (u)-[:FAVORITE]->(p)
+	
+MATCH (u:User {id: '001'}), (p:CPU {id: "c7816543-644f-4f0e-a105-ec1d010880db"})
+MERGE (u)-[:FAVORITE]->(p)
+    	
+MATCH (u:User {id: '001'}), (p:RAM {id: "5d8c40d7-42e4-4045-b1d1-e909993def0b"})
+MERGE (u)-[:FAVORITE]->(p)
+
+MATCH (u:User {id: '001'}), (p:Motherboard {id: "726dd601-66b1-4506-af33-3faeac3c962a"})
+MERGE (u)-[:FAVORITE]->(p)
+            	

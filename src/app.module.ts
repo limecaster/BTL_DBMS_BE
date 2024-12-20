@@ -10,6 +10,8 @@ import { SpacyService } from 'service/spacy.service';
 import { CheckCompatibilityService } from 'service/check-compatibility.service';
 import { SearchController } from 'controller/search.controller';
 import { SearchProductService } from 'service/search-product.service';
+import { FavoriteListService } from 'service/favorite-list.service';
+import { FavoriteListController } from 'controller/favorite-list.controller';
 
 @Module({
   imports: [
@@ -17,7 +19,12 @@ import { SearchProductService } from 'service/search-product.service';
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, BuildController, SearchController],
+  controllers: [
+    AppController,
+    BuildController,
+    SearchController,
+    FavoriteListController,
+  ],
   providers: [
     AppService,
     ManualBuildService,
@@ -26,7 +33,8 @@ import { SearchProductService } from 'service/search-product.service';
     SpacyService,
     Neo4jConfigService,
     ConfigService,
-    SearchProductService
+    SearchProductService,
+    FavoriteListService,
   ],
 })
-export class AppModule { }
+export class AppModule {}
