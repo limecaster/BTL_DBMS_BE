@@ -12,8 +12,8 @@ export class SearchController {
   @ApiOperation({ summary: 'Full-text search for products by name' })
   @ApiBody({ description: 'Name of the product to search for' })
   @ApiResponse({ status: 200, description: 'List of products found' })
-  // curl -X GET http://127.0.0.1:3001/search -H "Content-Type: application/json" -d '{"name": "AMD Ryzen 7"}'
-  async searchProduct(@Body('name') name: string) {
-    return (await this.searchProductService.searchProduct(name)).records.map((record) => record.get('node').properties);
+  // curl -X GET "http://localhost:3001/search?name=AMD" -H "accept: application/json" -H "Content-Type: application/json" 
+  async searchProductByName(@Query('name') name: string) {
+    return (await this.searchProductService.searchProduct(name)).records.map(record => record.get('node').properties);
   }
 }
