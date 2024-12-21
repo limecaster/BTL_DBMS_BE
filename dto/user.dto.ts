@@ -1,5 +1,5 @@
 // user.dto.ts
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, OmitType } from '@nestjs/swagger';
 
 export class RegisterUserDto {
   @ApiProperty({ description: 'The unique username for the user' })
@@ -27,6 +27,10 @@ export class RegisterUserDto {
   @ApiProperty({ description: 'The phone number of the user' })
   phone: string;
 }
+
+
+export class RegisterUserWithoutPasswordDto extends OmitType(RegisterUserDto, ['password'] as const) {}
+
 
 export class LoginUserDto {
   @ApiProperty({ description: 'The username of the user' })

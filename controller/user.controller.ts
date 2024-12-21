@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from 'service/user.service';
 import { ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
-import { RegisterUserDto, LoginUserDto } from 'dto/user.dto';
+import { RegisterUserDto, LoginUserDto, RegisterUserWithoutPasswordDto } from 'dto/user.dto';
 
 @Controller('user')
 export class UserController {
@@ -37,17 +37,32 @@ export class UserController {
     return this.userService.loginUser(loginUserDto);
   }
 
-  @Get(':username')
-  @ApiOperation({ summary: 'Get user by username' })
+  @Post(':id/update')
+  @ApiOperation({ summary: 'Update user profile' })
+  @ApiBody({ type: RegisterUserWithoutPasswordDto })
   @ApiResponse({
     status: 200,
-    description: 'User found',
+    description: 'User profile updated',
   })
   @ApiResponse({
     status: 404,
     description: 'User not found',
   })
-  async getUser(@Param('username') username: string) {
-    return this.userService.getUser(username);
+  async updateUser(@Param('id') id: number, @Body() registerUserWithoutPasswordDto: RegisterUserWithoutPasswordDto) {
+    return this.userService.updateUserProfileById(id, registerUserWithoutPasswordDto);
+  }
+
+  @Get(':id/profile')
+  @ApiOperation(({ summary: 'Get user profile' }))
+  @ApiResponse({
+    status: 200,
+    description: 'User profile found',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found',
+  })
+  async getProfile(@Param('id') id: number) {
+    return this.userService.getUserProfileById(id);
   }
 }
