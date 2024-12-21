@@ -5,6 +5,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { UpdateOrderStatusDto } from 'dto/update-status-order.dto';
 import { UserIdDto } from 'dto/user-id.dto';
 import { OrderService } from 'service/order.service';
 
@@ -25,5 +26,14 @@ export class OrderController {
   // curl -X POST http://127:0.0.1:3001/order/create/
   async createOrder(@Body() userId: UserIdDto) {
     return this.orderService.createOrder(userId);
+  }
+
+  @Post('update-status')
+  @ApiOperation({
+    summary: 'Update status of order',
+  })
+  @ApiResponse({ status: 200, description: 'Order status updated' })
+  async updateStatus(@Body() dto: UpdateOrderStatusDto) {
+    return this.orderService.updateStatus(dto.orderId, dto.status);
   }
 }

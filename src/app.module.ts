@@ -21,6 +21,8 @@ import { ManageCartService } from 'service/manage-cart.service';
 
 import { OrderController } from 'controller/order.controller';
 import { OrderService } from 'service/order.service';
+import { PaymentController } from 'controller/payment.controller';
+import { PaymentService } from 'service/payment.service';
 
 import { RecommendController } from 'controller/recommend.controller';
 import { RecommendService } from 'service/recommend.service';
@@ -45,8 +47,12 @@ import { ProductService } from 'service/list-products.service';
 
     OrderController,
 
+    PaymentController,
+
+
     RecommendController,
     ProductController,
+
 
   ],
   providers: [
@@ -65,8 +71,12 @@ import { ProductService } from 'service/list-products.service';
 
     OrderService,
 
+    PaymentService,
+
+
     RecommendService,
     ProductService,
+
 
   ],
 })
