@@ -12,7 +12,7 @@ export class Neo4jConfigService {
       neo4j.auth.basic(
         this.configService.get<string>('NEO4J_USER'),
         this.configService.get<string>('NEO4J_PASSWORD'),
-      ),  
+      ),
     );
     this.testConnection();
   }
