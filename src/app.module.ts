@@ -20,6 +20,8 @@ import { DetailProductService } from 'service/detail-product.service';
 import { ManageCartService } from 'service/manage-cart.service';
 import { RecommendController } from 'controller/recommend.controller';
 import { RecommendService } from 'service/recommend.service';
+import { ProductController } from 'controller/list-products.controller';
+import { ProductService } from 'service/list-products.service';
 
 @Module({
   imports: [
@@ -36,6 +38,7 @@ import { RecommendService } from 'service/recommend.service';
     ViewDetailController,
     UserController,
     RecommendController,
+    ProductController,
   ],
   providers: [
     AppService,
@@ -51,6 +54,7 @@ import { RecommendService } from 'service/recommend.service';
     DetailProductService,
     UserService,
     RecommendService,
+    ProductService,
   ],
 })
 export class AppModule {}
