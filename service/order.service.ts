@@ -23,7 +23,7 @@ export class OrderService {
     const query = `
     MATCH (user:User {id: $id})-[:OWNS]->(cart:Cart)-[r:CONTAINS]->(product)
     WITH user, cart, product, r, SUM(r.quantity * product.price) AS totalPrice
-    CREATE (user)-[:PLACED]->(order:Order {orderId: $orderId, date: datetime(), totalPrice: totalPrice, status: "Processing"})
+    CREATE (user)-[:PLACED]->(order:Order {orderId: $orderId, date: datetime(), totalPrice: totalPrice, status: "PENDING"})
     WITH user, cart, product, order, r
     MERGE (order)-[rel:CONTAINS]->(product)
     SET rel.quantity = r.quantity
@@ -37,5 +37,18 @@ export class OrderService {
     const orderId = uuidv4(); // Tạo UUID trên ứng dụng
     const result = await this.runQuery(query, { id, orderId });
     return result.records[0]?.get('orderId');
+  }
+
+  async updateStatus(orderId: string, status: string) {
+    const query = `
+    MATCH (order:Order {orderId: $orderId})
+    SET order.status = $status
+    RETURN order.status AS status
+  `;
+    if (!orderId) {
+      throw new Error('OrderID is required');
+    }
+    const result = await this.runQuery(query, { orderId, status });
+    return result.records[0]?.get('status');
   }
 }

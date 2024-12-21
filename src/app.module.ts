@@ -20,6 +20,8 @@ import { DetailProductService } from 'service/detail-product.service';
 import { ManageCartService } from 'service/manage-cart.service';
 import { OrderController } from 'controller/order.controller';
 import { OrderService } from 'service/order.service';
+import { PaymentController } from 'controller/payment.controller';
+import { PaymentService } from 'service/payment.service';
 
 @Module({
   imports: [
@@ -36,6 +38,7 @@ import { OrderService } from 'service/order.service';
     ViewDetailController,
     UserController,
     OrderController,
+    PaymentController,
   ],
   providers: [
     AppService,
@@ -51,6 +54,7 @@ import { OrderService } from 'service/order.service';
     DetailProductService,
     UserService,
     OrderService,
+    PaymentService,
   ],
 })
 export class AppModule {}
