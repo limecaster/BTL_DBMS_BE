@@ -18,10 +18,15 @@ import { ManageCartController } from 'controller/manage-cart.controller';
 import { ViewDetailController } from 'controller/view-detail.controller';
 import { DetailProductService } from 'service/detail-product.service';
 import { ManageCartService } from 'service/manage-cart.service';
+
+import { OrderController } from 'controller/order.controller';
+import { OrderService } from 'service/order.service';
+
 import { RecommendController } from 'controller/recommend.controller';
 import { RecommendService } from 'service/recommend.service';
 import { ProductController } from 'controller/list-products.controller';
 import { ProductService } from 'service/list-products.service';
+
 
 @Module({
   imports: [
@@ -37,8 +42,12 @@ import { ProductService } from 'service/list-products.service';
     ManageCartController,
     ViewDetailController,
     UserController,
+
+    OrderController,
+
     RecommendController,
     ProductController,
+
   ],
   providers: [
     AppService,
@@ -53,8 +62,12 @@ import { ProductService } from 'service/list-products.service';
     ManageCartService,
     DetailProductService,
     UserService,
+
+    OrderService,
+
     RecommendService,
     ProductService,
+
   ],
 })
 export class AppModule {}

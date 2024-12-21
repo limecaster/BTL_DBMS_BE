@@ -30,3 +30,8 @@ CREATE (cart:Cart { cartId: '001', createdAt: datetime() })
 
 MATCH (user:User {id: '001'}), (cart:Cart {cartId: '001'}) MERGE (user)-[:OWNS]->(cart)
 
+MATCH (cart:Cart {cartId: '001'}), (product:CPU {id: '5901a9b5-dfbf-44c5-814b-4351c4a3965e'})
+MERGE (cart)-[r:CONTAINS]->(product)
+ON CREATE SET r.quantity = 2  // Nếu quan hệ mới, đặt số lượng là 2
+ON MATCH SET r.quantity = r.quantity + 2  // Nếu đã có quan hệ, cộng dồn số lượng
+RETURN cart, product, r
